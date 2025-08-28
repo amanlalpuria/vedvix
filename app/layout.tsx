@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { DM_Sans, Playfair_Display } from "next/font/google"
+import { DM_Sans } from "next/font/google"
 import "./globals.css"
 
 const dmSans = DM_Sans({
@@ -9,16 +9,15 @@ const dmSans = DM_Sans({
   variable: "--font-dm-sans",
 })
 
-const playfairDisplay = Playfair_Display({
-  subsets: ["latin"],
-  display: "swap",
-  variable: "--font-playfair",
-})
-
 export const metadata: Metadata = {
-  title: "Vedvix - Innovative Tech Agency",
-  description: "Leading agency for web development, mobile development, automation, and UI/UX design",
+  title: "Vedvix - Innovative Tech Solutions",
+  description: "Mobile & Web Development, Digital Marketing, Automation & AI, UI/UX & Designing",
   generator: "aman.lalpuria",
+  icons: {
+    icon: "/vedvix_favicon.ico",
+    shortcut: "/vedvix_favicon.ico",
+    apple: "/vedvix.png",
+  },
 }
 
 export default function RootLayout({
@@ -27,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`${dmSans.variable} ${playfairDisplay.variable} antialiased`}>
+    <html lang="en" className={`${dmSans.variable} antialiased`}>
       <body className="font-sans">{children}</body>
     </html>
   )
