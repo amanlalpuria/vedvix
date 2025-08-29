@@ -208,7 +208,7 @@ export default function VedvixWebsite() {
       {/* <PartnerSection /> */}
       
       {/* Blog Section */}
-      <BlogSection setSelectedBlog={setSelectedBlog} />
+      {/* <BlogSection setSelectedBlog={setSelectedBlog} /> */}
 
       {/* Contact Section */}
       <ContactSection

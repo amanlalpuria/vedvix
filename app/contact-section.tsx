@@ -16,9 +16,9 @@ interface ContactSectionProps {
   setContactForm: React.Dispatch<React.SetStateAction<{ name: string; email: string; message: string }>>
   handleContactSubmit: (e: React.FormEvent) => void
 
-  scheduleForm: { name: string; email: string; phone: string; service: string; date: string; time: string }
+  scheduleForm: { name: string; email: string; phone: string; service: string; date: string}
   setScheduleForm: React.Dispatch<
-    React.SetStateAction<{ name: string; email: string; phone: string; service: string; date: string; time: string }>
+    React.SetStateAction<{ name: string; email: string; phone: string; service: string; date: string }>
   >
   handleScheduleSubmit: (e: React.FormEvent) => void
 }
@@ -54,7 +54,7 @@ export function ContactSection({
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-[#2E2E2E] mb-2">Email Us</h3>
-                  <p className="text-[#2E2E2E]/70">hello@vedvix.com</p>
+                  <p className="text-[#2E2E2E]/70">hello@vedvix.in</p>
                   {/* <p className="text-[#2E2E2E]/70">support@vedvix.com</p> */}
                 </div>
               </div>
@@ -131,7 +131,7 @@ export function ContactSection({
                           <option value="web-development">Web Development</option>
                           <option value="mobile-development">Mobile Development</option>
                           <option value="automation">Automation & AI</option>
-                          <option value="ui-ux-design">UI/UX Design</option>
+                          <option value="ui-ux-design">Graphics Design</option>
                         </select>
                         <Input
                           type="date"
@@ -140,9 +140,9 @@ export function ContactSection({
                           className="h-12 border-[#E5E5E5] focus:border-[#962DE8] rounded-xl"
                           required
                         />
-                        <select
+                        {/* <select
                           className="w-full h-12 p-3 border border-[#E5E5E5] focus:border-[#962DE8] rounded-xl bg-white text-[#2E2E2E]"
-                          value={scheduleForm.time}
+                          // value={scheduleForm.time}
                           onChange={(e) => setScheduleForm({ ...scheduleForm, time: e.target.value })}
                           required
                         >
@@ -153,7 +153,7 @@ export function ContactSection({
                           <option value="14:00">2:00 PM</option>
                           <option value="15:00">3:00 PM</option>
                           <option value="16:00">4:00 PM</option>
-                        </select>
+                        </select> */}
                       </div>
                       <Button
                         type="submit"

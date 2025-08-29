@@ -97,14 +97,14 @@ export function HeroSection({
               </DialogContent>
             </Dialog>
 
-            <Button
+            {/* <Button
               size="lg"
               variant="outline"
               className="border-2 border-[#3533CD]/50 text-[#3533CD] hover:bg-[#3533CD] hover:text-white rounded-full px-8 py-4"
             >
               <Play className="mr-3 h-5 w-5" />
               Watch Our Story
-            </Button>
+            </Button> */}
           </div>
 
           {/* Scroll indicator */}

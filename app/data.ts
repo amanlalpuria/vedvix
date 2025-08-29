@@ -12,6 +12,7 @@ export const services = [
       description: "Cutting-edge websites that push the boundaries of what's possible on the web.",
       features: ["iOS & Android", "React Native", "React & Next.js", "Custom Animations", "Performance Optimized", "SEO Ready"],
       image: "/placeholder.svg?height=300&width=400",
+      services: "web-dev",
     },
     {
       icon: Cog,
@@ -31,13 +32,15 @@ export const services = [
             "Email & Performance Marketing"
         ],
         image: "/placeholder.svg?height=300&width=400",
-},
+        services: "digital-marketing",
+    },
     {
       icon: Palette,
-      title: "UI/UX Design",
+      title: "Desigining & Graphics",
       description: "Designs that don't just look good—they feel intuitive and drive results.",
       features: ["User Research", "Prototyping", "Design Systems", "Conversion Optimization"],
       image: "/placeholder.svg?height=300&width=400",
+      services: "ui-ux",
     },
   ]
 
@@ -153,6 +156,7 @@ export const services = [
     { name: "Crztal Craft", logo: "/clients/crztalcraft.png?height=60&width=120", industry: "E-Commerce", website: "https://crztalcraft.com" },
     { name: "GAG Accountancy", logo: "/clients/gag.png?height=60&width=120", industry: "Accounting Consultancy", website: "https://gagaccountancy.com" },
     { name: "The Curtain Court", logo: "/clients/curtaincourt.jpg?height=60&width=120", industry: "E-Commerce", website: "https://thecurtaincourt.com" },
+    { name: "Urban Culture", logo: "/clients/urbanculture.jpeg?height=60&width=120", industry: "E-Commerce", website: "https://urbanculture.me/" },
     ]
 
 

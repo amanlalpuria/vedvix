@@ -1,6 +1,7 @@
 "use client"
 
-import { useState } from "react"
+import { useSearchParams } from "next/navigation"
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { ArrowLeft, ExternalLink, Github, Eye, Heart, Share2 } from "lucide-react"
 
@@ -176,9 +177,18 @@ const portfolioProjects = {
 }
 
 export default function PortfolioPage() {
-  const [activeCategory, setActiveCategory] = useState<"ui-ux" | "web-dev" | "digital-marketing">("ui-ux")
+  const searchParams = useSearchParams()
+  const initialCategory = (searchParams.get("category") as "ui-ux" | "web-dev" | "digital-marketing") || "ui-ux"
+
+  const [activeCategory, setActiveCategory] = useState(initialCategory)
   const [selectedProject, setSelectedProject] = useState<any>(null)
 
+  useEffect(() => {
+    if (searchParams.get("category")) {
+      setActiveCategory(searchParams.get("category") as any)
+    }
+  }, [searchParams])
+  
   const categories = [
     { id: "ui-ux", label: "UI/UX Design", count: portfolioProjects["ui-ux"].length },
     { id: "web-dev", label: "Web Development", count: portfolioProjects["web-dev"].length },

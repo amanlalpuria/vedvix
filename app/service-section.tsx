@@ -1,3 +1,4 @@
+import { useRouter } from "next/navigation"
 import { services } from "./data";
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
@@ -10,6 +11,15 @@ import {
 export function ServiceSection() {
 
   const [activeService, setActiveService] = useState<number | null>(null)
+  const router = useRouter()
+
+  const handleLearnMore = (serviceCategory?: string) => {
+    if (serviceCategory) {
+      router.push(`/portfolio?category=${serviceCategory}`)
+    } else {
+      router.push("/portfolio")
+    }
+  }
 
   return (
     <section id="services" className="py-32 px-4 sm:px-6 lg:px-8 relative">
@@ -66,11 +76,12 @@ export function ServiceSection() {
                     <p className="text-[#2E2E2E]/70 text-sm leading-relaxed mb-6">{service.description}</p>
 
                     <Button
-                      variant="ghost"
-                      className="text-[#962DE8] hover:text-white hover:bg-[#962DE8] rounded-full px-6 group-hover:translate-x-2 transition-all duration-300 w-full justify-center"
-                    >
-                      Learn More <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
+                    variant="ghost"
+                    className="text-[#962DE8] hover:text-white hover:bg-[#962DE8] rounded-full px-6 group-hover:translate-x-2 transition-all duration-300 w-full justify-center"
+                    onClick={() => handleLearnMore(service.services)}
+                  >
+                    Learn More <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
                   </CardContent>
                 </Card>
               )

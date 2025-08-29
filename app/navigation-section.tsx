@@ -36,7 +36,7 @@ export function NavigationSection({
           </div>
 
           {/* Links */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* <div className="hidden md:flex items-center space-x-8">
             <a href="#services" className="text-[#2E2E2E] hover:text-[#962DE8] transition-colors">
               Services
             </a>
@@ -49,7 +49,7 @@ export function NavigationSection({
             <button onClick={scrollToContact} className="text-[#2E2E2E] hover:text-[#962DE8] transition-colors">
               Contact
             </button>
-          </div>
+          </div> */}
 
           {/* Contact Dialog */}
           <Dialog>
