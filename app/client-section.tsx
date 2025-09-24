@@ -78,7 +78,7 @@ export function ClientSection() {
             <div className="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none"></div>
           </div>
 
-          <div className="text-center mt-12">
+          {/* <div className="text-center mt-12">
             <Button
               size="lg"
               className="bg-gradient-to-r from-[#FFDE59] to-[#FF914D] hover:from-[#FFDE59]/90 hover:to-[#FF914D]/90 text-[#2E2E2E] rounded-full px-8 py-3"
@@ -86,7 +86,7 @@ export function ClientSection() {
               Join Our Client Family
               <Heart className="ml-2 h-5 w-5" />
             </Button>
-          </div>
+          </div> */}
         </div>
       </section>
   )

@@ -1,4 +1,5 @@
 import {
+  Shield,Server,Briefcase,
   Code,
   Smartphone,
   Cog,
@@ -42,6 +43,49 @@ export const services = [
       image: "/placeholder.svg?height=300&width=400",
       services: "ui-ux",
     },
+    {
+  icon: Shield,
+  title: "Blockchain Solutions",
+  description: "Secure, scalable blockchain services tailored for decentralized applications and digital assets.",
+  features: [
+    "Smart Contract Development",
+    "DApp Development",
+    "Blockchain Integration",
+    "Token Creation & Management",
+    "Private & Public Blockchains"
+  ],
+  image: "/placeholder.svg?height=300&width=400",
+  services: "blockchain",
+},
+{
+  icon: Server,
+  title: "Cloud & DevOps",
+  description: "Scalable infrastructure and automation to streamline deployments, ensure uptime, and accelerate delivery.",
+  features: [
+    "AWS / GCP / Azure",
+    "CI/CD Pipelines",
+    "Containerization (Docker, Kubernetes)",
+    "Infrastructure as Code (Terraform)",
+    "Monitoring & Logging"
+  ],
+  image: "/placeholder.svg?height=300&width=400",
+  services: "cloud-devops",
+},
+{
+  icon: Briefcase,
+  title: "Product Consulting",
+  description: "From concept to launch — we help you validate, design, and scale your digital product successfully.",
+  features: [
+    "Product Discovery",
+    "MVP Planning",
+    "Tech Stack Advisory",
+    "Roadmapping",
+    "Growth Strategy"
+  ],
+  image: "/placeholder.svg?height=300&width=400",
+  services: "product-consulting",
+}
+
   ]
 
   export const projects = [
@@ -157,7 +201,9 @@ export const services = [
     { name: "GAG Accountancy", logo: "/clients/gag.png?height=60&width=120", industry: "Accounting Consultancy", website: "https://gagaccountancy.com" },
     { name: "The Curtain Court", logo: "/clients/curtaincourt.jpg?height=60&width=120", industry: "E-Commerce", website: "https://thecurtaincourt.com" },
     { name: "Urban Culture", logo: "/clients/urbanculture.jpeg?height=60&width=120", industry: "E-Commerce", website: "https://urbanculture.me/" },
-    ]
+    { name: "Maruti Industries", logo: "/clients/marutiindustries.avif?height=60&width=120", industry: "Real Estatess", website: "https://www.marutind.com/" },
+    { name: "KAPS", logo: "/clients/kaps.png?height=60&width=120", industry: "E-Commerce", website: "https://kaps9.in/" },
+  ]
 
 
   export const collaborations = [
