@@ -22,19 +22,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        shell: bash
+        run: |
+          npm ci --include=optional || {
+            echo "npm optional dependency install failed, retrying with fresh install..."
+            rm -rf node_modules package-lock.json
+            npm install --include=optional
+          }
 
-      - name: Build Next.js project
+      - name: Build Vite project
         run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out   # 👈 Next.js static output folder
+          path: ./dist
 
   deploy:
     environment:
