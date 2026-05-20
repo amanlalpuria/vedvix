@@ -11,6 +11,7 @@ import {
   Footer 
 } from "./components/Sections";
 import CustomCursor from "./components/CustomCursor";
+import ScrollToTop from "./components/ScrollToTop";
 
 export default function App() {
   return (
@@ -34,6 +35,9 @@ export default function App() {
         <Testimonials />
         <CTABanner />
       </main>
+
+      {/* Scroll to Top Button */}
+      <ScrollToTop />
 
       {/* Footer */}
       <Footer />

@@ -1,9 +1,18 @@
 import { motion } from "motion/react";
 import { ArrowRight, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
     { name: "Services", href: "#services" },
@@ -13,9 +22,22 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 border-b border-border-subtle bg-bg-primary/80 backdrop-blur-md">
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-        <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="flex items-center gap-2 group">
+    <nav 
+      role="navigation" 
+      aria-label="Main navigation" 
+      className={`sticky top-0 left-0 w-full z-50 border-b transition-all duration-300 ${
+        isScrolled 
+          ? "border-border-subtle bg-bg-primary/90 backdrop-blur-lg shadow-lg shadow-black/20" 
+          : "border-border-subtle bg-bg-primary/80 backdrop-blur-md"
+      }`}
+    >
+      <div className={`max-w-7xl mx-auto px-6 flex items-center justify-between transition-all duration-300 ${isScrolled ? "h-16" : "h-20"}`}>
+        <a 
+          href="#" 
+          aria-label="Vedvix Home"
+          onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }} 
+          className="flex items-center gap-2 group focus-visible:outline-accent-brand"
+        >
           <div className="w-8 h-8 bg-accent-brand rounded-lg flex items-center justify-center font-display font-bold text-white group-hover:rotate-12 transition-transform duration-300">
             V
           </div>
@@ -28,21 +50,27 @@ export function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-sm font-medium text-text-muted hover:text-text-primary transition-colors duration-200"
+              className="text-sm font-medium text-text-muted hover:text-text-primary transition-colors duration-200 focus-visible:text-accent-brand"
             >
               {link.name}
             </a>
           ))}
           <a 
             href="#contact"
-            className="px-5 py-2.5 bg-accent-brand text-white text-sm font-bold rounded-full hover:bg-opacity-90 transition-all duration-300"
+            className="px-5 py-2.5 bg-accent-brand text-white text-sm font-bold rounded-full hover:bg-opacity-90 transition-all duration-300 focus-visible:ring-2 focus-visible:ring-accent-brand focus-visible:ring-offset-4 focus-visible:ring-offset-bg-primary"
           >
             Let's Talk
           </a>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-text-primary" onClick={() => setIsOpen(!isOpen)}>
+        <button 
+          className="md:hidden text-text-primary p-2 transition-colors hover:text-accent-brand" 
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          aria-controls="mobile-menu"
+        >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
@@ -50,23 +78,25 @@ export function Navbar() {
       {/* Mobile Nav */}
       {isOpen && (
         <motion.div
+          id="mobile-menu"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden absolute top-20 left-0 w-full bg-bg-primary border-b border-border-subtle p-6 flex flex-col gap-6"
+          className="md:hidden absolute top-full left-0 w-full bg-bg-primary border-b border-border-subtle p-6 flex flex-col gap-6 shadow-2xl"
         >
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
               onClick={() => setIsOpen(false)}
-              className="text-lg font-medium text-text-muted hover:text-text-primary"
+              className="text-lg font-medium text-text-muted hover:text-text-primary transition-colors"
             >
               {link.name}
             </a>
           ))}
           <a 
             href="#contact"
-            className="md:hidden w-full py-4 bg-accent-brand text-white font-bold rounded-xl flex items-center justify-center font-display"
+            onClick={() => setIsOpen(false)}
+            className="md:hidden w-full py-4 bg-accent-brand text-white font-bold rounded-xl flex items-center justify-center font-display shadow-lg hover:bg-opacity-90 transition-all"
           >
             Let's Talk
           </a>
