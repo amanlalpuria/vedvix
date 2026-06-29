@@ -2737,8 +2737,8 @@ export function Footer() {
           <div>
             <h4 className="font-bold mb-8 uppercase tracking-widest text-xs text-text-muted">Office</h4>
             <p className="text-text-muted leading-relaxed">
-              Vedvix Product Studio,<br />
-              Jaipur, Rajasthan, 302017<br />
+              Vedvix, Plot 24 East Shyam Vihar Charan Nadi<br />
+              Murlipura, Jaipur, Rajasthan, 302039<br />
               India
             </p>
             <p className="mt-4 text-text-muted text-sm">Proprietor: <span className="text-text-primary font-medium">Deepanshi Gaur</span></p>
