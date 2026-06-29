@@ -2581,6 +2581,10 @@ export function CTABanner() {
                  <span className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-1">Direct Email</span>
                  <a href="mailto:hello@vedvix.in" className="text-xl font-bold hover:text-accent-brand transition-colors">hello@vedvix.in</a>
               </div>
+              <div className="flex flex-col items-center md:items-start text-left">
+                 <span className="text-[10px] font-black uppercase tracking-widest text-text-muted mb-1">Phone</span>
+                 <a href="tel:+919460688385" className="text-xl font-bold hover:text-accent-brand transition-colors">+91 9460688385</a>
+              </div>
             </div>
 
             <div className="mt-20 pt-10 border-t border-white/5 w-full flex flex-wrap justify-center gap-10 opacity-40">
@@ -2737,7 +2741,9 @@ export function Footer() {
               Jaipur, Rajasthan, 302017<br />
               India
             </p>
-            <a href="mailto:hello@vedvix.in" className="mt-8 text-text-primary font-bold hover:text-accent-brand transition-colors block">hello@vedvix.in</a>
+            <p className="mt-4 text-text-muted text-sm">Proprietor: <span className="text-text-primary font-medium">Deepanshi Gaur</span></p>
+            <a href="mailto:hello@vedvix.in" className="mt-4 text-text-primary font-bold hover:text-accent-brand transition-colors block">hello@vedvix.in/vedvix2@gmail.com</a>
+            <a href="tel:+919460688385" className="mt-2 text-text-primary font-bold hover:text-accent-brand transition-colors block">+91 9460688385</a>
           </div>
         </div>
         
