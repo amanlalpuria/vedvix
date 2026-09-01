@@ -26,6 +26,7 @@ import kaps9Img from "../assets/images/kaps9_app_ecosystem_1779278493576.png";
 import shellImg from "../assets/images/shell_talent_recruitment_1779278516601.png";
 import urbanImg from "../assets/images/urban_culture_wellness_1779278534408.png";
 import marutiImg from "../assets/images/maruti_glass_factory_1779278555548.png";
+import { VedvixMark } from "../ui/brand/Logo";
 
 // --- Marquee ---
 export function Marquee() {
@@ -2693,7 +2694,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div className="md:col-span-1">
             <a href="#" onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }} className="flex items-center gap-2 mb-8">
-              <div className="w-8 h-8 bg-accent-brand rounded-lg flex items-center justify-center font-display font-bold text-white">V</div>
+              <VedvixMark size={30} nodeColor="#6080FA" />
               <span className="font-display font-bold text-2xl tracking-tighter">Vedvix</span>
             </a>
             <p className="text-text-muted leading-relaxed mb-6">

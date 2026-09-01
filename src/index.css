@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Outfit:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Outfit:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -85,4 +85,90 @@
 
 html {
   scroll-behavior: smooth;
+}
+
+/* ============================================================
+   Vedvix UI Kit (src/ui) — brand-accurate design tokens.
+   Namespaced `vx-*` so the existing marketing site is untouched.
+   Palette from the official Vedvix logo system:
+   navy #060B1A · ink #0D1520 · accent #2F5AF8 · accent-soft #6080FA
+   Typeface: Space Grotesk (matches the VEDVIX wordmark).
+   ============================================================ */
+@theme {
+  --font-grotesk: "Space Grotesk", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  --color-vx-bg: #060b1a;
+  --color-vx-bg-raised: #0b1327;
+  --color-vx-ink: #0d1520;
+  --color-vx-surface: rgba(255, 255, 255, 0.04);
+  --color-vx-surface-hover: rgba(255, 255, 255, 0.07);
+  --color-vx-border: rgba(255, 255, 255, 0.1);
+  --color-vx-border-strong: rgba(255, 255, 255, 0.2);
+
+  --color-vx-text: #eef1fa;
+  --color-vx-text-muted: #9aa3c4;
+  --color-vx-text-subtle: #616c92;
+
+  --color-vx-accent: #2f5af8;
+  --color-vx-accent-soft: #6080fa;
+  --color-vx-accent-contrast: #ffffff;
+
+  --color-vx-success: #33d69f;
+  --color-vx-warning: #f5b544;
+  --color-vx-danger: #fb5e6b;
+
+  --radius-vx: 16px;
+  --radius-vx-lg: 24px;
+
+  --shadow-vx-glow: 0 0 0 1px rgba(47, 90, 248, 0.1), 0 18px 50px -12px rgba(47, 90, 248, 0.45);
+  --shadow-vx-card: 0 10px 40px -12px rgba(0, 0, 0, 0.6);
+}
+
+@layer utilities {
+  /* Frosted glass surface used across the kit */
+  .vx-glass {
+    background-color: var(--color-vx-surface);
+    border: 1px solid var(--color-vx-border);
+    backdrop-filter: blur(12px);
+  }
+
+  /* Gradient hairline border for premium cards */
+  .vx-ring-gradient {
+    background:
+      linear-gradient(var(--color-vx-bg-raised), var(--color-vx-bg-raised)) padding-box,
+      linear-gradient(135deg, rgba(96, 128, 250, 0.55), rgba(255, 255, 255, 0.06) 42%, rgba(47, 90, 248, 0.4)) border-box;
+    border: 1px solid transparent;
+  }
+
+  /* Skeleton shimmer */
+  .vx-skeleton {
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+  .vx-skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.09), transparent);
+    animation: vx-shimmer 1.6s ease-in-out infinite;
+  }
+
+  .vx-mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  }
+}
+
+@keyframes vx-shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vx-skeleton::after {
+    animation: none;
+  }
 }

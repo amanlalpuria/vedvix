@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { ArrowRight, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
+import { VedvixMark } from "../ui/brand/Logo";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,9 +39,12 @@ export function Navbar() {
           onClick={(e) => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }} 
           className="flex items-center gap-2 group focus-visible:outline-accent-brand"
         >
-          <div className="w-8 h-8 bg-accent-brand rounded-lg flex items-center justify-center font-display font-bold text-white group-hover:rotate-12 transition-transform duration-300">
-            V
-          </div>
+          <VedvixMark
+            size={30}
+            animated
+            nodeColor="#6080FA"
+            className="group-hover:rotate-6 transition-transform duration-300"
+          />
           <span className="font-display font-bold text-xl tracking-tight">Vedvix</span>
         </a>
 
