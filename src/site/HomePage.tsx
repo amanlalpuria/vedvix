@@ -250,7 +250,7 @@ function FeaturedCaseStudy() {
 /* --------------------------------------------------------------- Services */
 
 const SERVICES = [
-  {icon: Bot, title: 'AI product development', body: 'LLM features, document extraction, RAG assistants and AI pipelines built into real workflows and running in production.', proof: 'Viaflo · Veraeaty.ai'},
+  {icon: Bot, title: 'AI product development', body: 'LLM features, document extraction, RAG assistants and AI pipelines built into real workflows and running in production.', proof: 'Viaflo'},
   {icon: Store, title: 'Marketplaces', body: 'Multi-sided platforms with location search, split orders, payouts to sellers and the operations tooling to run them day to day.', proof: 'NYC Beer Kegs · KAPS · Urban Culture'},
   {icon: Layers, title: 'SaaS & web platforms', body: 'Multi-tenant products with role-based access, approvals, audit trails and reporting that finance teams trust.', proof: 'Viaflo · KAPS'},
   {icon: Smartphone, title: 'Mobile apps', body: 'iOS and Android apps, native or cross-platform, with push, payments, camera and maps done properly.', proof: 'NYC Beer Kegs · Sipstr'},
