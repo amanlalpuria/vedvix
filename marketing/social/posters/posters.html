@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vedvix social posters</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* Brand tokens, copied from src/index.css */
+  :root {
+    --bg: #060b1a; --raised: #0b1327; --text: #eef1fa; --muted: #9aa3c4; --subtle: #616c92;
+    --border: rgba(255,255,255,.1); --border-strong: rgba(255,255,255,.2);
+    --accent: #2f5af8; --soft: #6080fa;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); }
+  body.gallery { padding: 32px; font-family: 'DM Sans', sans-serif; color: var(--text); }
+  body.gallery h2 { font-family: 'Space Grotesk', sans-serif; margin: 40px 0 16px; }
+  .row { display: flex; flex-wrap: wrap; gap: 20px; }
+  .thumb { overflow: hidden; border-radius: 12px; border: 1px solid var(--border); }
+  .thumb a { color: var(--muted); font-size: 13px; display: block; padding: 6px 10px; text-decoration: none; }
+
+  .poster {
+    position: relative; overflow: hidden; background: var(--bg); color: var(--text);
+    font-family: 'DM Sans', sans-serif; display: flex; flex-direction: column;
+    padding: 96px 88px 150px;
+  }
+  .poster.ig { width: 1080px; height: 1350px; }
+  .poster.li { width: 1200px; height: 1200px; padding-bottom: 140px; }
+  .grid {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+    background-size: 72px 72px;
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 30% 20%, #000 20%, transparent 75%);
+  }
+  .orb { position: absolute; border-radius: 50%; filter: blur(90px); pointer-events: none; }
+  .content { position: relative; z-index: 1; display: flex; flex-direction: column; flex: 1; min-height: 0; }
+
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 12px; align-self: flex-start;
+    font-size: 24px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--a-soft); border: 1px solid var(--a-border); background: var(--a-bg);
+    padding: 12px 22px; border-radius: 999px;
+  }
+  .eyebrow::before { content: ''; width: 10px; height: 10px; border-radius: 50%; background: var(--a); }
+  h1, h2.t, .num { font-family: 'Space Grotesk', sans-serif; letter-spacing: -.03em; margin: 0; }
+  h1 { font-size: 112px; line-height: .98; font-weight: 700; margin-top: 44px; }
+  h1.md { font-size: 88px; }
+  h1.sm { font-size: 72px; line-height: 1.04; }
+  .hl { color: var(--a-soft); position: relative; white-space: nowrap; }
+  .hl::after { content: ''; position: absolute; left: 0; right: 0; bottom: -2px; height: 8px; border-radius: 8px; background: var(--a); }
+  .sub { font-size: 38px; line-height: 1.4; color: var(--muted); margin-top: 40px; max-width: 880px; }
+  .sub.sm { font-size: 32px; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: auto; border-radius: 28px; overflow: hidden; border: 1px solid var(--border); background: var(--border); }
+  .stats.four { grid-template-columns: repeat(4, 1fr); }
+  .stat { background: var(--raised); padding: 40px 36px; }
+  .stat .v { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 92px; letter-spacing: -.03em; line-height: 1; color: var(--text); }
+  .stats.four .stat .v { font-size: 64px; }
+  .stat .l { margin-top: 12px; font-size: 26px; color: var(--muted); line-height: 1.3; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 44px; }
+  .chip { font-size: 28px; padding: 14px 26px; border-radius: 999px; border: 1px solid var(--border-strong); background: rgba(255,255,255,.04); }
+
+  .flow { display: flex; flex-direction: column; gap: 18px; margin-top: auto; }
+  .flow .step { display: flex; align-items: center; gap: 28px; padding: 26px 34px; border-radius: 24px; border: 1px solid var(--border); background: var(--raised); font-size: 40px; font-family: 'Space Grotesk', sans-serif; font-weight: 600; }
+  .flow .step b { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 18px; border: 1px solid var(--a-border); color: var(--a-soft); font-size: 28px; }
+  .flow .step span { font-family: 'DM Sans', sans-serif; font-weight: 400; color: var(--muted); font-size: 28px; margin-left: auto; }
+
+  .list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: auto; }
+  .card { padding: 34px; border-radius: 28px; border: 1px solid var(--border); background: var(--raised); }
+  .card .ct { font-family: 'Space Grotesk', sans-serif; font-size: 36px; font-weight: 600; }
+  .card .cb { margin-top: 12px; font-size: 25px; line-height: 1.4; color: var(--muted); }
+  .card .ic { width: 52px; height: 52px; border-radius: 16px; background: var(--a-bg); border: 1px solid var(--a-border); margin-bottom: 22px; display: grid; place-items: center; color: var(--a-soft); font-weight: 700; font-family: 'Space Grotesk'; font-size: 24px; }
+
+  .media { margin-top: auto; display: flex; justify-content: center; align-items: flex-end; gap: 28px; }
+  .phone { border-radius: 36px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.12); }
+  .phone img { display: block; width: 100%; }
+  .fan { flex: 1; min-height: 0; margin-top: 48px; align-items: flex-start; padding-top: 30px; overflow: hidden;
+    -webkit-mask-image: linear-gradient(#000 70%, transparent); }
+  .fan .phone:first-child { transform: rotate(-7deg) translateY(40px); }
+  .fan .phone:last-child { transform: rotate(7deg) translateY(40px); }
+  .screen { border-radius: 24px; padding: 10px; background: #0f1830; border: 1px solid var(--border-strong); box-shadow: 0 40px 80px rgba(0,0,0,.55); }
+  .screen img { display: block; border-radius: 16px; width: 100%; }
+  .split { display: grid; grid-template-columns: 1fr 440px; gap: 52px; align-items: center; flex: 1; min-height: 0; }
+  .split h1 { font-size: 76px; line-height: 1.02; }
+  .split .sub { font-size: 32px; }
+
+  .bignum { font-family: 'Space Grotesk', sans-serif; font-size: 300px; font-weight: 700; line-height: .8; letter-spacing: -.06em; color: transparent; -webkit-text-stroke: 3px var(--a-soft); margin-top: auto; }
+  .flag { font-size: 30px; font-weight: 600; color: #fb5e6b; letter-spacing: .14em; text-transform: uppercase; margin-top: 56px; }
+
+  .quote { margin-top: 40px; padding: 40px 44px; border-radius: 28px; border: 1px solid var(--border); background: var(--raised); }
+  .quote p { margin: 0; font-family: 'Space Grotesk', sans-serif; font-size: 34px; line-height: 1.35; }
+  .quote .by { margin-top: 20px; font-size: 24px; color: var(--muted); }
+
+  .cta { margin-top: auto; display: flex; flex-direction: column; gap: 18px; }
+  .btn { align-self: flex-start; font-size: 34px; font-weight: 600; padding: 28px 48px; border-radius: 999px; background: var(--a); color: #fff; }
+  .contact { font-size: 32px; color: var(--muted); }
+
+  .foot {
+    position: absolute; left: 88px; right: 88px; bottom: 56px; z-index: 1;
+    display: flex; align-items: center; justify-content: space-between;
+    border-top: 1px solid var(--border); padding-top: 30px; font-size: 26px; color: var(--muted);
+  }
+  .brand { display: flex; align-items: center; gap: 16px; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; color: var(--text); letter-spacing: -.01em; }
+  .brand svg { width: 52px; height: 52px; }
+  .pager { display: flex; gap: 10px; align-items: center; }
+  .pager i { width: 12px; height: 12px; border-radius: 50%; background: var(--border-strong); }
+  .pager i.on { width: 36px; border-radius: 8px; background: var(--a); }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+const W = '../../../public/work';
+const LOGO = `<svg viewBox="0 0 100 100"><rect width="100" height="100" rx="22" fill="#0b1327" stroke="rgba(255,255,255,.18)"/><g transform="translate(50 51) scale(0.6) translate(-60 -64)"><polyline points="16,16 60,92 104,16" fill="none" stroke="#fff" stroke-width="18"/><polygon points="60,106 70,114 60,122 50,114" fill="#6080FA"/></g></svg>`;
+
+/* Accent themes: [main, soft] */
+const THEMES = {
+  vedvix: ['#2f5af8', '#6080fa'],
+  nyc: ['#F2541B', '#FF8A5C'],
+  kaps: ['#14B8A6', '#4FD1C5'],
+  alert: ['#fb5e6b', '#ff8d96'],
+};
+
+const eb = (t) => t ? `<div class="eyebrow">${t}</div>` : '';
+const stats = (items, four) => `<div class="stats ${four ? 'four' : ''}">${items.map(([v, l]) => `<div class="stat"><div class="v">${v}</div><div class="l">${l}</div></div>`).join('')}</div>`;
+const phone = (src, w) => `<div class="phone" style="width:${w}px"><img src="${W}/${src}"></div>`;
+
+/* ------------------------------------------------------------------ Posters
+ * id prefix = post: ig1/ig2/ig3 are Instagram carousels (1080x1350),
+ * li1/li2/li3 are LinkedIn single images (1200x1200).
+ * Log every post in ../POST-LOG.md when it goes live.
+ */
+const POSTERS = [
+  /* ---------- IG1: Introduction ---------- */
+  {id: 'ig1-1', theme: 'vedvix', html: `
+    ${eb('Product studio · Jaipur → the world')}
+    <h1>We build products that <span class="hl">actually ship.</span></h1>
+    <p class="sub sm">Hello Instagram. We're Vedvix: design, development, cloud and launch under one roof.</p>
+    <div class="media fan">${phone('sipstr/app-home.jpg', 250)}${phone('nyc-beer-kegs/app-home.jpg', 270)}${phone('urban-culture/phone-home.jpg', 250)}</div>`},
+  {id: 'ig1-2', theme: 'vedvix', html: `
+    ${eb('How we are different')}
+    <h1 class="md">One team.<br><span class="hl">Zero handoffs.</span></h1>
+    <div class="flow">
+      ${[['Idea', 'what to build first'], ['Design', 'flows + prototypes'], ['Code', 'web, iOS, Android'], ['Cloud', 'AWS + CI/CD'], ['Launch', 'and scale after']]
+        .map(([t, d], i) => `<div class="step"><b>0${i + 1}</b>${t}<span>${d}</span></div>`).join('')}
+    </div>`},
+  {id: 'ig1-3', theme: 'vedvix', html: `
+    ${eb('What we build')}
+    <h1 class="sm">Six things we do <span class="hl">really well</span></h1>
+    <div class="list">
+      ${[['AI', 'AI products', 'LLM features, document extraction, AI pipelines'], ['SA', 'SaaS platforms', 'Roles, approvals, audit trails, reports'], ['MK', 'Marketplaces', 'Location search, split orders, payouts'], ['AP', 'Mobile apps', 'iOS + Android with push, payments, maps'], ['CL', 'Cloud & DevOps', 'Terraform on AWS, branch-based deploys'], ['WB', 'Websites', 'Fast, SEO-ready sites that convert']]
+        .map(([i, t, d]) => `<div class="card"><div class="ic">${i}</div><div class="ct">${t}</div><div class="cb">${d}</div></div>`).join('')}
+    </div>`},
+  {id: 'ig1-4', theme: 'vedvix', html: `
+    ${eb('So far')}
+    <h1 class="md">Numbers we're <span class="hl">proud of</span></h1>
+    ${stats([['12+', 'Products shipped'], ['3', 'AI platforms live'], ['100%', 'On-time delivery'], ['US · IN', 'Clients across the USA and India']])}`},
+  {id: 'ig1-5', theme: 'vedvix', html: `
+    ${eb('Your turn')}
+    <h1>Got an idea?<br><span class="hl">Let's build it.</span></h1>
+    <p class="sub">From first sketch to live product, with working software every week.</p>
+    <div class="cta"><div class="btn">vedvix.in · link in bio</div><div class="contact">hello@vedvix.in</div></div>`},
+
+  /* ---------- IG2: NYC Beer Kegs case study ---------- */
+  {id: 'ig2-1', theme: 'nyc', html: `
+    ${eb('Case study · NYC Beer Kegs')}
+    <h1 class="md">4 apps. 1 backend.<br><span class="hl">New York City.</span></h1>
+    <p class="sub sm">Customer website, Android app, store console and courier app, designed and built end to end by Vedvix.</p>
+    <div class="media">${phone('nyc-beer-kegs/app-home.jpg', 270)}${phone('nyc-beer-kegs/app-product.jpg', 300)}${phone('nyc-beer-kegs/app-orders.jpg', 270)}</div>`},
+  {id: 'ig2-2', theme: 'nyc', html: `
+    <div class="split"><div>
+      ${eb('01 · Storefront')}
+      <h1>Only what can actually reach the door</h1>
+      <p class="sub">The delivery address decides which stores, products and prices you see. No disappointments at checkout.</p>
+    </div>${phone('nyc-beer-kegs/app-home.jpg', 440)}</div>`},
+  {id: 'ig2-3', theme: 'nyc', html: `
+    <div class="split"><div>
+      ${eb('02 · Tracking')}
+      <h1>Every step visible, store to door</h1>
+      <p class="sub">Push updates at each stage and a 6-digit code to hand the courier with photo ID.</p>
+    </div>${phone('nyc-beer-kegs/app-orders.jpg', 440)}</div>`},
+  {id: 'ig2-4', theme: 'nyc', html: `
+    ${eb('03 · Store console')}
+    <h1 class="sm">Stores draw their own <span class="hl">delivery zones</span></h1>
+    <p class="sub sm">Each zone gets its own base fee, per-mile fee, surge, minimum order and prep time. Every change can be approved or rolled back.</p>
+    <div class="media"><div class="screen" style="width:904px"><img src="${W}/nyc-beer-kegs/console-zones.jpg"></div></div>`},
+  {id: 'ig2-5', theme: 'nyc', html: `
+    <div class="split"><div>
+      ${eb('04 · Courier app')}
+      <h1>Built for the doorstep</h1>
+      <p class="sub">QR pickup, a guided 21+ ID check, proof of delivery and earnings by week, month or year.</p>
+    </div>${phone('nyc-beer-kegs/courier-dashboard.jpg', 440)}</div>`},
+  {id: 'ig2-6', theme: 'nyc', html: `
+    ${eb('The result')}
+    <h1 class="md">Live across <span class="hl">all 5 boroughs</span></h1>
+    <p class="sub sm">Running in production at nycbeerkeg.com. Full case study at the link in bio.</p>
+    ${stats([['4', 'Apps on one backend'], ['5', 'NYC boroughs covered'], ['6', 'Built-in user roles'], ['9', 'Finance reports']])}`},
+
+  /* ---------- IG3: 5 signs your app needs a rebuild ---------- */
+  {id: 'ig3-1', theme: 'vedvix', html: `
+    ${eb('Founder checklist')}
+    <h1 class="md">5 signs your app has <span class="hl">outgrown</span> its first version</h1>
+    <p class="sub">How many can you tick? Be honest.</p>
+    <div class="cta"><div class="contact">Swipe →</div></div>`},
+  ...[
+    ['Every new feature breaks an old one', 'No tests and no module boundaries, so every change ripples everywhere.'],
+    ['Deploying is a scary, manual, all-hands event', 'If shipping needs a prayer, it needs a pipeline.'],
+    ['Everyone shares one admin login', 'No roles, no audit trail, no idea who changed what.'],
+    ['Changing prices per city needs a developer', 'Business rules belong in a console, not hard-coded.'],
+    ['Nobody knows what happens if the server dies', 'No monitoring, no backups, no runbook.'],
+  ].map(([t, d], i) => ({id: `ig3-${i + 2}`, theme: 'alert', html: `
+    <div class="flag">Sign ${i + 1} of 5</div>
+    <h1 class="md" style="margin-top:36px">${t}</h1>
+    <p class="sub">${d}</p>
+    <div class="bignum">0${i + 1}</div>`})),
+  {id: 'ig3-7', theme: 'kaps', html: `
+    ${eb('We fixed all five · KAPS')}
+    <h1 class="sm">Rebuilt, <span class="hl">not patched</span></h1>
+    <p class="sub sm">A transport platform covering goods delivery, cabs, handyman services and heavy machinery. Every branch now deploys itself.</p>
+    ${stats([['20', 'Spring Boot modules, rebuilt from Django'], ['3', 'AWS environments'], ['56', 'AWS resources in Terraform'], ['4', 'Service verticals on one backend']])}`},
+  {id: 'ig3-8', theme: 'vedvix', html: `
+    ${eb('Sound familiar?')}
+    <h1>DM us<br><span class="hl">"REBUILD"</span></h1>
+    <p class="sub">We'll tell you honestly whether you need a rebuild or just a cleanup.</p>
+    <div class="cta"><div class="btn">Save this for your next team meeting</div></div>`},
+
+  /* ---------- LinkedIn ---------- */
+  {id: 'li1', theme: 'vedvix', html: `
+    ${eb('Product studio · Jaipur, building for the world')}
+    <h1>We build products that <span class="hl">actually ship.</span></h1>
+    <div class="chips">${['Product & UI/UX design', 'Web + mobile apps', 'AI features', 'Backends', 'AWS & CI/CD'].map((c) => `<span class="chip">${c}</span>`).join('')}</div>
+    ${stats([['12+', 'Products shipped'], ['3', 'AI platforms live'], ['100%', 'On-time delivery'], ['1', 'Team, sketch to production']], true)}`},
+  {id: 'li2', theme: 'nyc', html: `
+    ${eb('Case study · NYC Beer Kegs')}
+    <h1 class="md">4 apps. 1 backend.<br><span class="hl">All five boroughs.</span></h1>
+    <div class="media">${phone('nyc-beer-kegs/app-home.jpg', 280)}${phone('nyc-beer-kegs/app-orders.jpg', 300)}${phone('nyc-beer-kegs/courier-dashboard.jpg', 280)}</div>`},
+  {id: 'li3', theme: 'vedvix', html: `
+    ${eb('How we work')}
+    <h1 class="sm">Weekly demos &gt; <span class="hl">weekly status reports</span></h1>
+    <div class="flow" style="margin-top:36px;gap:10px">
+      ${[['Discover', 'goals, users, release 1'], ['Design', 'clickable prototypes'], ['Build', 'a live demo every week'], ['Launch', 'QA, tests, infrastructure'], ['Scale', 'monitoring + new features']]
+        .map(([t, d], i) => `<div class="step" style="padding:12px 26px;font-size:32px"><b>0${i + 1}</b>${t}<span>${d}</span></div>`).join('')}
+    </div>
+    <div class="quote" style="margin-top:auto;padding:28px 36px"><p style="font-size:28px">"Delivered as a complete end-to-end product across mobile, web, and backend."</p><div class="by">Vikrant, CEO, KAPS9</div></div>`},
+];
+
+function render(p) {
+  const [a, soft] = THEMES[p.theme];
+  const ig = p.id.startsWith('ig');
+  const group = POSTERS.filter((x) => x.id.split('-')[0] === p.id.split('-')[0]);
+  const idx = group.indexOf(p);
+  const pager = ig ? `<div class="pager">${group.map((_, i) => `<i class="${i === idx ? 'on' : ''}"></i>`).join('')}</div>` : '<span>vedvix.in</span>';
+  return `<div class="poster ${ig ? 'ig' : 'li'}" style="--a:${a};--a-soft:${soft};--a-border:${a}66;--a-bg:${a}1f">
+    <div class="grid"></div>
+    <div class="orb" style="width:700px;height:700px;left:-260px;top:-260px;background:${a};opacity:.35"></div>
+    <div class="orb" style="width:500px;height:500px;right:-200px;bottom:120px;background:${soft};opacity:.16"></div>
+    <div class="content">${p.html}</div>
+    <div class="foot"><div class="brand">${LOGO}vedvix</div>${ig ? pager : ''}<span>${ig ? 'vedvix.in' : 'vedvix.in · hello@vedvix.in'}</span></div>
+  </div>`;
+}
+
+const id = location.hash.slice(1);
+const root = document.getElementById('root');
+if (id) {
+  const p = POSTERS.find((x) => x.id === id);
+  root.innerHTML = p ? render(p) : `<p style="color:#fff">Unknown poster ${id}</p>`;
+} else {
+  // Gallery preview of every poster, grouped by post.
+  document.body.className = 'gallery';
+  const groups = [...new Set(POSTERS.map((p) => p.id.split('-')[0]))];
+  root.innerHTML = groups.map((g) => `<h2>${g}</h2><div class="row">${POSTERS.filter((p) => p.id.split('-')[0] === g).map((p) => {
+    const ig = p.id.startsWith('ig'); const s = 0.3; const w = (ig ? 1080 : 1200) * s, h = (ig ? 1350 : 1200) * s;
+    return `<div class="thumb"><div style="width:${w}px;height:${h}px"><div style="transform:scale(${s});transform-origin:0 0">${render(p)}</div></div><a href="#${p.id}" onclick="setTimeout(()=>location.reload())">${p.id}</a></div>`;
+  }).join('')}</div>`).join('');
+}
+window.POSTER_IDS = POSTERS.map((p) => p.id);
+</script>
+</body>
+</html>
