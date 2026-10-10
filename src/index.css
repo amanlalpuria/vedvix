@@ -1,65 +1,31 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=Outfit:wght@600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Outfit", sans-serif;
-
-  --color-bg-primary: #0D0D0D;
-  --color-bg-secondary: #141414;
-  --color-accent-brand: #7C71FF;
-  --color-accent-brand-rgb: 124, 113, 255;
-  --color-accent-cta: #F5A623;
-  --color-text-primary: #F5F5F0;
-  --color-text-muted: #A3A3A3;
-  --color-border-subtle: rgba(255, 255, 255, 0.12);
-  --color-glass-bg: rgba(255, 255, 255, 0.04);
-
-  --radius-card: 16px;
-  --shadow-glow: 0 0 40px rgba(92, 79, 255, 0.2);
 }
 
 @layer base {
+  html {
+    background-color: var(--color-vx-bg);
+    color-scheme: dark;
+  }
+
   body {
-    @apply bg-bg-primary text-text-primary font-sans antialiased selection:bg-accent-brand selection:text-white;
+    @apply bg-vx-bg text-vx-text font-sans antialiased;
   }
 
   :focus-visible {
-    @apply outline-2 outline-offset-4 outline-accent-brand;
+    @apply outline-2 outline-offset-4 outline-vx-accent;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display tracking-tight;
+    @apply font-grotesk;
+    text-wrap: balance;
   }
 }
 
 @layer utilities {
-  .noise-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    content: "";
-    opacity: 0.05;
-    z-index: 9999;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  }
-
-  .glass-card {
-    @apply bg-glass-bg border border-border-subtle backdrop-blur-md;
-  }
-
-  .text-glow {
-    text-shadow: 0 0 20px rgba(92, 79, 255, 0.3);
-  }
-
-  .hover-glow:hover {
-    box-shadow: 0 0 30px rgba(92, 79, 255, 0.1), 0 0 60px rgba(92, 79, 255, 0.05);
-    @apply border-accent-brand/40 bg-white/[0.08] transition-all duration-500 ease-out;
-  }
-
   .no-scrollbar::-webkit-scrollbar {
     display: none;
   }
@@ -75,16 +41,19 @@
     background: transparent;
   }
   .custom-scrollbar::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.12);
     border-radius: 10px;
-  }
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: var(--color-accent-brand);
   }
 }
 
 html {
   scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 /* ============================================================
