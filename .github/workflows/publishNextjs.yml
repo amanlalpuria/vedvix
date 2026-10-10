@@ -40,6 +40,10 @@ jobs:
 
       - name: Build Vite project
         run: npm run build
+        env:
+          VITE_GTM_ID: ${{ secrets.VITE_GTM_ID }}
+          VITE_GA4_ID: ${{ secrets.VITE_GA4_ID }}
+          VITE_META_PIXEL_ID: ${{ secrets.VITE_META_PIXEL_ID }}
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

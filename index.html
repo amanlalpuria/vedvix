@@ -2,34 +2,29 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#060B1A" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>Vedvix | Product Studio</title>
-    <script>
-      // Defensive script to handle cases where external scripts try to overwrite window.fetch
-      // which is a read-only property in some sandboxed environments.
-      (function() {
-        try {
-          const originalFetch = window.fetch;
-          if (originalFetch && Object.getOwnPropertyDescriptor(window, 'fetch')?.set === undefined) {
-             // It's already getter-only, we just need to make sure we don't try to set it.
-             // If some script does window.fetch = ..., it will throw.
-             // We can catch those early by defining a no-op setter if configurable.
-             if (Object.getOwnPropertyDescriptor(window, 'fetch')?.configurable) {
-                Object.defineProperty(window, 'fetch', {
-                  get: function() { return originalFetch; },
-                  set: function() { console.warn('Blocked attempt to overwrite window.fetch'); },
-                  configurable: true
-                });
-             }
-          }
-        } catch (e) {}
-      })();
-    </script>
+    <title>Vedvix | AI Product Studio &amp; Software Development</title>
+    <meta name="description" content="Vedvix is a Jaipur product studio building AI products, SaaS platforms, marketplaces and mobile apps from concept to launch." />
+    <link rel="canonical" href="https://vedvix.in/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Vedvix" />
+    <meta property="og:title" content="Vedvix | AI Product Studio &amp; Software Development" />
+    <meta property="og:description" content="Vedvix is a Jaipur product studio building AI products, SaaS platforms, marketplaces and mobile apps from concept to launch." />
+    <meta property="og:url" content="https://vedvix.in/" />
+    <meta property="og:image" content="https://vedvix.in/og.png" />
+    <meta property="og:image:alt" content="Vedvix product studio" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vedvix | AI Product Studio &amp; Software Development" />
+    <meta name="twitter:description" content="Vedvix is a Jaipur product studio building AI products, SaaS platforms, marketplaces and mobile apps from concept to launch." />
+    <meta name="twitter:image" content="https://vedvix.in/og.png" />
+    <script id="site-schema" type="application/ld+json">{}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-

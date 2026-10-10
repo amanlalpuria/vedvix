@@ -47,6 +47,7 @@ import {
   type Person,
 } from '../ui';
 import vedvixSymbolWhite from '../ui/brand/assets/vedvix-symbol-white.svg';
+import {usePageMeta} from '../site/shared';
 
 /* --------------------------------------------------------------------- */
 /* Local helpers — these live in the showcase only, not the kit.          */
@@ -119,6 +120,7 @@ type Mode = 'loading' | 'error' | 'empty' | 'success';
 /* --------------------------------------------------------------------- */
 
 export default function ShowcasePage() {
+  usePageMeta('UI Showcase | Vedvix', 'Explore the design system and interface components used across the Vedvix website.', '/', {noindex: true});
   const [loading, setLoading] = useState(false);
   const [mode, setMode] = useState<Mode>('success');
 
