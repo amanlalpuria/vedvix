@@ -108,7 +108,7 @@ export function createStructuredData(
           'https://linkedin.com/company/vedvix',
           'https://twitter.com/vedvix',
           'https://github.com/vedvix',
-          'https://instagram.com/vedvix',
+          'https://www.instagram.com/vedvix2/',
         ],
       },
       {

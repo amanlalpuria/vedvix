@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vedvix profile assets</title>
+<style>
+  /* Brand tokens, copied from src/index.css */
+  :root { --bg: #060b1a; --raised: #0b1327; --accent: #2f5af8; --soft: #6080fa; --text: #eef1fa; --muted: #9aa3c4; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); }
+  body.gallery { padding: 32px; font-family: system-ui, sans-serif; color: var(--muted); display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start; }
+  .tile { position: relative; overflow: hidden; display: grid; place-items: center; }
+  .pf { width: 1080px; height: 1080px; }
+  .hl { width: 1080px; height: 1920px; }
+  .glow { position: absolute; border-radius: 50%; filter: blur(120px); }
+  .mark { position: relative; }
+  .ring { position: absolute; border-radius: 50%; border: 3px solid rgba(255,255,255,.08); }
+  .icon { position: relative; width: 560px; height: 560px; display: grid; place-items: center; border-radius: 50%; background: var(--raised); border: 3px solid rgba(96,128,250,.35); }
+  .icon svg { width: 270px; height: 270px; fill: none; stroke: var(--soft); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  /* Gallery previews show the circular crop Instagram applies. */
+  .preview { display: flex; flex-direction: column; gap: 8px; align-items: center; font-size: 13px; }
+  .preview .crop { overflow: hidden; border-radius: 50%; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+<script>
+// The Vedvix mark from public/favicon.svg: a V with a diamond beneath it.
+const mark = (size, v = '#fff', dot = '#6080FA') =>
+  `<svg class="mark" width="${size}" height="${size * 132 / 120}" viewBox="0 0 120 132"><polyline points="16,16 60,92 104,16" fill="none" stroke="${v}" stroke-width="18" stroke-miterlimit="10"/><polygon points="60,106 70,114 60,122 50,114" fill="${dot}"/></svg>`;
+
+const ICONS = {
+  work: '<rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/>',
+  services: '<path d="m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/>',
+  process: '<circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/>',
+  reviews: '<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>',
+  contact: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>',
+};
+
+/* id prefix: pf = profile picture (1080x1080), hl = story highlight cover (1080x1920). */
+const ASSETS = [
+  {id: 'pf-dark', cls: 'pf', html: `
+    <div class="glow" style="width:760px;height:760px;background:#2f5af8;opacity:.32"></div>
+    <div class="ring" style="width:820px;height:820px"></div>
+    ${mark(470)}`},
+  {id: 'pf-blue', cls: 'pf', style: 'background:linear-gradient(145deg,#4a70ff 0%,#2f5af8 45%,#1b3bc4 100%)', html: `
+    <div class="glow" style="width:600px;height:600px;background:#fff;opacity:.12;top:-200px;left:-120px"></div>
+    ${mark(470, '#fff', '#060b1a')}`},
+  ...Object.entries(ICONS).map(([name, path]) => ({id: `hl-${name}`, cls: 'hl', html: `
+    <div class="glow" style="width:700px;height:700px;background:#2f5af8;opacity:.28"></div>
+    <div class="icon"><svg viewBox="0 0 24 24">${path}</svg></div>`})),
+];
+
+const render = (a) => `<div class="tile ${a.cls}" style="${a.style || 'background:var(--bg)'}">${a.html}</div>`;
+
+const id = location.hash.slice(1);
+const root = document.getElementById('root');
+if (id) {
+  const a = ASSETS.find((x) => x.id === id);
+  root.innerHTML = a ? render(a) : `<p style="color:#fff">Unknown asset ${id}</p>`;
+} else {
+  document.body.className = 'gallery';
+  root.style.display = 'contents';
+  root.innerHTML = ASSETS.map((a) => {
+    const s = a.cls === 'pf' ? 0.3 : 0.15, h = a.cls === 'pf' ? 1080 : 1920;
+    // Highlights are cropped to a circle around the centre, like Instagram does.
+    const box = a.cls === 'pf' ? 1080 * s : 1080 * s;
+    const offset = (h * s - box) / 2;
+    return `<div class="preview"><div class="crop" style="width:${box}px;height:${box}px"><div style="transform:translateY(${-offset}px) scale(${s});transform-origin:0 0">${render(a)}</div></div>${a.id}</div>`;
+  }).join('');
+}
+</script>
+</body>
+</html>

@@ -213,9 +213,9 @@ function LegalDialog({kind, onClose}: {kind: keyof typeof LEGAL; onClose: () => 
 
 const SOCIALS = [
   {label: 'LinkedIn', href: 'https://linkedin.com/company/vedvix', icon: Linkedin},
-  {label: 'Twitter', href: 'https://twitter.com/vedvix', icon: Twitter},
+  // {label: 'Twitter', href: 'https://twitter.com/vedvix', icon: Twitter},
   {label: 'GitHub', href: 'https://github.com/vedvix', icon: Github},
-  {label: 'Instagram', href: 'https://instagram.com/vedvix', icon: Instagram},
+  {label: 'Instagram', href: 'https://www.instagram.com/vedvix2/', icon: Instagram},
 ];
 
 function Footer() {

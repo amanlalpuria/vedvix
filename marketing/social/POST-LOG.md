@@ -2,8 +2,9 @@
 
 The single record of everything we post on LinkedIn and Instagram. **Check this before writing a new post** so we don't repeat a project, a hook, a stat or a testimonial too soon.
 
-- Profiles: [linkedin.com/company/vedvix](https://linkedin.com/company/vedvix) · [instagram.com/vedvix](https://instagram.com/vedvix)
+- Profiles: [linkedin.com/company/vedvix](https://linkedin.com/company/vedvix) · [instagram.com/vedvix2](https://www.instagram.com/vedvix2/)
 - Posters: [`posters/posters.html`](posters/posters.html) holds the source, and `posters/out/<id>.png` holds the rendered images (open `posters.html` in a browser to preview them all).
+- Profile picture, bio and highlight covers: [`PROFILE.md`](PROFILE.md)
 - Re-render after editing: `node marketing/social/posters/render.mjs` (all) or `node marketing/social/posters/render.mjs ig2` (one post).
 
 ## How to use this file
